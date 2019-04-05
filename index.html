@@ -1,0 +1,35 @@
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+layout: default
+---
+<section id="blog" class="row">
+  {% for post in site.posts %}
+    <section class="col-12 col-md-6">
+      <article class="anas_card mb-3 p-3 rounded">
+        <section class="_body">
+          <section class="_thumbnail mb-2 mx-n3 mt-n3 rounded-top">
+            <section class="_tags p-3">
+              {% for tag in post.tags %}
+              <a href="{{ 'tags/' | relative_url }}{{ tag | slugify | prepend: "#" }}" title="{{ tag | capitalize }}">🔖 {{ tag | capitalize }}</a>
+              {% endfor %}
+            </section>
+            <img class="w-100" src="{{ post.image }}" alt="{{ post.title }}" />
+          </section>
+          <header>
+            <p class="small mb-2 text-muted">📅 <time datetime="{{ post.date }}" class="date">{{ post.date | date: "%A, %-d %B %Y" }}</time></p>
+            <h1 class="h4 mb-0 text-truncate text-primary"><a href="{{ site.baseurl }}{{ post.url }}"title="{{ post.title }}">{{ post.title }}</a></h1>
+          </header>
+          <hr class="mx-n3">
+          <p class="mb-0">
+            {% for link in post.links %}
+            <a class="btn btn-sm btn-primary" href="{{ link.url }}">{{ link.title }}</a>
+            {% endfor %}
+          </p>
+        </section>
+
+      </article>
+    </section>
+  {% endfor %}
+</section>

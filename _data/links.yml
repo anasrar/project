@@ -1,0 +1,9 @@
+list:
+- title: "👌 Home"
+  url: "/"
+- title: "📁 Project"
+  url: "/project"
+- title: "☕ Blog"
+  url: "/blog"
+- title: "📧 Contact"
+  url: "mailto:mynameanasrar@gmail.com"
