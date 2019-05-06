@@ -3,7 +3,7 @@ layout: post
 title: "Zippyshare Downloader CLI"
 date: 2019-02-04 01:38:00
 image: 'https://anasrar.github.io/Bersih/assets/images/thumb.png'
-description: 'Just Get Some Inspiration When See「The Animals in Screen II」ティザー映像/Fear, and Loathing in Las Vegas Interlude Song'
+description: 'I Made This Use Node.JS Beacuse I Often Download Anime (Ilegal 🤔) From Zippyshare and I Hate The Ads'
 tags:
 - Node.js
 links:
