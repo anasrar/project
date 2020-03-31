@@ -4,32 +4,50 @@
 
 layout: default
 ---
-<section id="blog" class="row">
-  {% for post in site.posts %}
-    <section class="col-12 col-md-6">
-      <article class="anas_card mb-3 p-3 rounded">
-        <section class="_body">
-          <section class="_thumbnail mb-2 mx-n3 mt-n3 rounded-top">
-            <section class="_tags p-3">
-              {% for tag in post.tags %}
-              <a href="{{ 'tags/' | relative_url }}{{ tag | slugify | prepend: "#" }}" title="{{ tag | capitalize }}">🔖 {{ tag | capitalize }}</a>
-              {% endfor %}
-            </section>
-            <img class="w-100" src="{{ post.image }}" alt="{{ post.title }}" />
-          </section>
-          <header>
-            <p class="small mb-2 text-muted">📅 <time datetime="{{ post.date }}" class="date">{{ post.date | date: "%A, %-d %B %Y" }}</time></p>
-            <h1 class="h4 mb-0 text-truncate text-primary"><a href="{{ site.baseurl }}{{ post.url }}"title="{{ post.title }}">{{ post.title }}</a></h1>
-          </header>
-          <hr class="mx-n3">
-          <p class="mb-0">
-            {% for link in post.links %}
-            <a class="btn btn-sm btn-primary" href="{{ link.url }}">{{ link.title }}</a>
-            {% endfor %}
-          </p>
-        </section>
-
-      </article>
-    </section>
-  {% endfor %}
+<section style="max-width: 900px;margin: 0 auto;padding: 1rem; min-height: 100vh;">
+  <section style="display: grid; grid-gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));">
+    <style scoped>
+      .btn>a {
+        background-color: #FF6768;
+        color: #17223B;
+        display: inline-block;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-decoration: none;
+        margin-right: 1rem;
+      }
+    </style>
+    {% for post in site.posts %}
+    <article style="background-color: rgba(0, 0, 0, 0.25);">
+      <section style="padding: 1rem">
+        <nav>
+          {% for tag in post.tags %}
+          <a href="{{ 'tags/' | relative_url }}{{ tag | slugify | prepend: "#" }}"
+            title="{{ tag | capitalize }}">{{ tag | capitalize }}</a>{% unless forloop.last %}, {% endunless %}
+          {% endfor %}
+        </nav>
+      </section>
+      <section style="height: 155px; overflow: hidden;">
+        <img style="width: 100%;" src="{{ post.image }}" alt="{{ post.title }}" title="{{ post.title }}" />
+      </section>
+      <header style="padding: 1rem 1rem 0;">
+        <div style="margin-bottom: 1rem">
+          <time datetime="{{ post.date }}"
+            style="color: #6B778D; font-size: 0.85rem">{{ post.date | date: "%A, %-d %B %Y" }}</time>
+        </div>
+        <h1 style="font-weight: 600; font-size: 1.5rem;">
+          <a href="{{ site.baseurl }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+        </h1>
+      </header>
+      <footer style="padding: 0 1rem 1rem 1rem;">
+        <nav class="btn">
+          {% for link in post.links %}
+          <a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a>
+          {% endfor %}
+        </nav>
+      </footer>
+    </article>
+    {% endfor %}
+  </section>
 </section>
