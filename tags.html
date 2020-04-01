@@ -5,28 +5,40 @@ description: "Tag cloud from all the project"
 permalink: /tags/
 ---
 
-<section>
+<section style="max-width: 900px;margin: 0 auto;padding: 1rem; min-height: 100vh;">
+    <style scoped>
+        :target {
+            background-color: rgba(0, 0, 0, 0.25);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+    </style>
     {% for tag in site.tags  %}
-    <section>
-        <section class="anas_card mb-3 p-3 rounded">
-            <h3 class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] }}</h3>
-            <hr class="mx-n3"/>
+    <section id="{{ tag[0] | slugify }}" style="margin: 0 -1rem 1rem; padding-left: 1rem; padding-right: 1rem;">
+        <h3 style="font-size: 2rem;">{{ tag[0] }}</h3>
+        <section>
             {% assign pages_list = tag[1] %}
-            {% for post in pages_list reversed %}
-                {% if post.title != null %}
-                {% if group == null or group == post.group %}
-                <article>
-                    <header>
-                        <p class="text-muted small mb-1">
-                            📅 <time datetime="{{ post.date }}" class="date">{{ post.date | date: "%A, %-d %B %Y" }}</time>
+            {% for post in pages_list %}
+            {% if post.title != null %}
+            {% if group == null or group == post.group %}
+            <article>
+                <header>
+                    <h1 style="font-size: 1.5rem;">
+                        <a href="{{ post.url | prepend: site.baseurl }}" title="{{ post.title }}">{{ post.title }}</a>
+                    </h1>
+                    <div>
+                        <time datetime="{{ post.date }}"
+                            style="color: #6B778D; font-size: 0.85rem;">{{ post.date | date: "%A, %-d %B %Y" }}</time>
+                    </div>
+                    <main>
+                        <p>
+                            {{ post.content | strip_html | truncatewords: 30 }}
                         </p>
-                        <h1 class="h6 font-weight-normal mb-2">
-                            <a href="{{ post.url | prepend: site.baseurl }}" title="{{ post.title }}">{{ post.title }}</a>
-                        </h1>
-                    </header>
-                </article>
-                {% endif %}
-                {% endif %}
+                    </main>
+                </header>
+            </article>
+            {% endif %}
+            {% endif %}
             {% endfor %}
             {% assign pages_list = nil %}
             {% assign group = nil %}
